@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Teruskan Authorization header ke PHP (penting untuk Bearer token)
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keranjang Belanja – TokoKu</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("toko_theme");
+        if (t) document.documentElement.setAttribute("data-theme", t);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="cart-container">
+      <div class="page-header" style="padding-left: 0">
+        <h1>🛒 Keranjang Belanja</h1>
+        <p>Periksa kembali pesanan Anda sebelum checkout</p>
+      </div>
+
+      <!-- Empty state -->
+      <div id="cart-empty" class="empty-state card hidden">
+        <span class="icon">🛒</span>
+        Keranjang Anda masih kosong.<br />
+        <a
+          href="index.html"
+          class="btn btn-primary"
+          style="margin-top: 1rem; display: inline-flex"
+          >Mulai Belanja</a
+        >
+      </div>
+
+      <!-- Table -->
+      <div id="cart-table-wrap" class="hidden">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Produk</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Subtotal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="cart-body"></tbody>
+        </table>
+      </div>
+
+      <!-- Summary -->
+      <div id="cart-summary" class="hidden" style="margin-top: 1.5rem">
+        <div class="cart-total">Total: <span id="cart-total">Rp 0</span></div>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+          "
+        >
+          <a href="index.html" class="btn btn-outline">← Lanjut Belanja</a>
+          <button
+            id="btn-checkout"
+            class="btn btn-success"
+            onclick="checkout()"
+          >
+            ✅ Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/cart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – TokoKu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function(){ var t=localStorage.getItem('toko_theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <div style="max-width:1100px;margin:2rem auto;padding:0 1rem">
+    <div class="page-header" style="padding-left:0">
+      <h1>⚙️ Admin Dashboard</h1>
+      <p>Kelola produk dan akun pengguna</p>
+    </div>
+
+    <!-- Sub-navigation -->
+    <div style="display:flex;gap:.6rem;margin-bottom:1.5rem">
+      <button id="nav-products" class="btn btn-primary">📦 Produk</button>
+      <button id="nav-users"    class="btn btn-outline">👥 Pengguna</button>
+    </div>
+
+    <!-- ── PRODUCTS SECTION ─────────────────────── -->
+    <div id="section-products">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h2 style="margin:0;font-size:1.2rem">Daftar Produk</h2>
+        <button id="btn-add-product" class="btn btn-primary btn-sm">+ Tambah Produk</button>
+      </div>
+      <div class="card" style="padding:0;overflow:auto">
+        <table class="admin-table" style="min-width:600px">
+          <thead>
+            <tr>
+              <th style="width:60px">Foto</th>
+              <th>Nama</th>
+              <th>Kategori</th>
+              <th>Harga</th>
+              <th>Stok</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="product-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── USERS SECTION ────────────────────────── -->
+    <div id="section-users" class="hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <h2 style="margin:0;font-size:1.2rem">Daftar Pengguna</h2>
+        <button id="btn-add-user" class="btn btn-primary btn-sm">+ Tambah Akun</button>
+      </div>
+      <div class="card" style="padding:0;overflow:auto">
+        <table class="admin-table" style="min-width:500px">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="user-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL: Product ══════════════════════════════ -->
+  <div id="modal-product" class="modal-overlay hidden">
+    <div class="modal-box">
+      <button id="modal-close-product" class="modal-close">✕</button>
+      <h3 id="modal-product-title">Tambah Produk</h3>
+      <form id="product-form" novalidate>
+        <div class="form-group">
+          <label>Nama Produk</label>
+          <input type="text" id="p-name" placeholder="Nama produk" required>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label>Harga (Rp)</label>
+            <input type="number" id="p-price" placeholder="0" min="0" required>
+          </div>
+          <div class="form-group">
+            <label>Stok</label>
+            <input type="number" id="p-stock" placeholder="0" min="0" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Kategori</label>
+          <input type="text" id="p-category" placeholder="Elektronik, Fashion, dsb">
+        </div>
+        <div class="form-group">
+          <label>URL Gambar</label>
+          <input type="url" id="p-image" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>Deskripsi</label>
+          <textarea id="p-description" placeholder="Deskripsi produk..."></textarea>
+        </div>
+        <div style="display:flex;gap:.8rem;justify-content:flex-end">
+          <button type="button" class="btn btn-outline" onclick="closeProductModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══ MODAL: User ═════════════════════════════════ -->
+  <div id="modal-user" class="modal-overlay hidden">
+    <div class="modal-box">
+      <button id="modal-close-user" class="modal-close">✕</button>
+      <h3 id="modal-user-title">Tambah Akun</h3>
+      <form id="user-form" novalidate>
+        <div class="form-group">
+          <label>Nama Lengkap</label>
+          <input type="text" id="u-name" placeholder="Nama lengkap" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="u-email" placeholder="email@contoh.com" required>
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="u-role">
+            <option value="user">Konsumen</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div id="u-password-wrap" class="form-group">
+          <label>Password</label>
+          <input type="password" id="u-password" placeholder="Min. 6 karakter">
+        </div>
+        <div style="display:flex;gap:.8rem;justify-content:flex-end">
+          <button type="button" class="btn btn-outline" onclick="closeUserModal()">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk – TokoKu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar"></nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>🛍️ Semua Produk</h1>
+      <p>Temukan produk terbaik dengan harga terjangkau</p>
+    </div>
+
+    <!-- Filter & Sort Bar -->
+    <div class="filter-bar">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="🔍 Cari produk..."
+        style="flex: 1; min-width: 180px; max-width: 320px"
+      />
+      <select id="cat-filter">
+        <option value="">Semua Kategori</option>
+      </select>
+      <select id="sort-select">
+        <option value="">Urutan Default</option>
+        <option value="az">Nama: A → Z</option>
+        <option value="za">Nama: Z → A</option>
+        <option value="cheap">Harga: Termurah</option>
+        <option value="exp">Harga: Termahal</option>
+      </select>
+    </div>
+
+    <!-- Products Grid -->
+    <div id="products-grid" class="products-grid"></div>
+
+    <div id="toast"></div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/products.js"></script>
+  </body>
+</html>

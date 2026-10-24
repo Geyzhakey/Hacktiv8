@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Daftar – TokoKu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function(){ var t=localStorage.getItem('toko_theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <h2>🛒 TokoKu</h2>
+
+      <!-- Tabs -->
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="login">Masuk</button>
+        <button class="tab-btn" data-tab="register">Daftar</button>
+      </div>
+
+      <!-- Login Panel -->
+      <div id="panel-login" class="tab-panel">
+        <form id="form-login" novalidate>
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="contoh@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Masuk</button>
+        </form>
+        <b>test@gmail.com</b> / <b>123456</b> &nbsp; <br> <b>admin@gmail.com</b> / <b>admingaming</b>
+        </p>
+      </div>
+
+      <!-- Register Panel -->
+      <div id="panel-register" class="tab-panel hidden">
+        <form id="form-register" novalidate>
+          <div class="form-group">
+            <label for="reg-name">Nama Lengkap</label>
+            <input type="text" id="reg-name" placeholder="Nama lengkap Anda" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" placeholder="contoh@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" placeholder="Min. 6 karakter" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-confirm">Konfirmasi Password</label>
+            <input type="password" id="reg-confirm" placeholder="Ulangi password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Buat Akun</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya – TokoKu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function(){ var t=localStorage.getItem('toko_theme'); if(t) document.documentElement.setAttribute('data-theme',t); })();
+  </script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar"></nav>
+
+  <div style="max-width:600px;margin:2rem auto;padding:0 1rem">
+    <div class="page-header" style="padding-left:0">
+      <h1>👤 Profil Saya</h1>
+      <p id="profile-role" class="text-muted"></p>
+    </div>
+
+    <!-- Edit Profile -->
+    <div class="card">
+      <h3 style="margin:0 0 1.2rem;font-size:1.05rem">✏️ Edit Profil</h3>
+      <form id="profile-form" novalidate>
+        <div class="form-group">
+          <label for="p-name">Nama Lengkap</label>
+          <input type="text" id="p-name" required>
+        </div>
+        <div class="form-group">
+          <label for="p-email">Email</label>
+          <input type="email" id="p-email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+      </form>
+    </div>
+
+    <!-- Change Password -->
+    <div class="card">
+      <h3 style="margin:0 0 1.2rem;font-size:1.05rem">🔒 Ganti Password</h3>
+      <form id="password-form" novalidate>
+        <div class="form-group">
+          <label for="old-password">Password Lama</label>
+          <input type="password" id="old-password" placeholder="Password saat ini" required>
+        </div>
+        <div class="form-group">
+          <label for="new-password">Password Baru</label>
+          <input type="password" id="new-password" placeholder="Min. 6 karakter" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Konfirmasi Password Baru</label>
+          <input type="password" id="confirm-password" placeholder="Ulangi password baru" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Ubah Password</button>
+      </form>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="card" style="border:2px solid #fca5a5">
+      <h3 style="margin:0 0 .6rem;color:#b91c1c;font-size:1.05rem">⚠️ Zona Berbahaya</h3>
+      <p class="text-muted" style="margin:0 0 1rem">Menghapus akun bersifat permanen dan tidak dapat dikembalikan.</p>
+      <button id="btn-delete-account" class="btn btn-danger">🗑️ Hapus Akun Saya</button>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/profile.js"></script>
+</body>
+</html>
